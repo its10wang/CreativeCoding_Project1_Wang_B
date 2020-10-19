@@ -15,19 +15,27 @@ new Bullet(401,601),
 new Bullet(401,601),
 new Bullet(401,601)
 };
+int fps = 0;
 int count = 0;
 
 void setup(){
-  frameRate(30);
   size(400,600);
   plane = new Plane();
   noCursor();
+  frameRate(30);
 }
 
 
 
 void draw(){
-  background(19,38,55);
+  background(0);
+   
+   if(++fps>30){
+     star(true);
+     fps=0;
+   }else
+     star(false);
+     
   for (int i =1;i<bullets.length;i++){
     bullets[i].draw(bullets[i].x,bullets[i].y+bullets[i].len,colors[i%4]);
   }
@@ -37,6 +45,19 @@ void draw(){
   fill(255);
   textSize(32);
   text(count, 15, 30);
+ 
+}
+  
+  
+void star(boolean flag){
+ 
+
+    float star;
+   stroke(255);
+   fill(255);
+   star=random(7);
+   ellipse(random(width),random(height),star,star);
+   ellipse(random(width),random(height),star,star);
 }
 
 
